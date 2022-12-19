@@ -8,7 +8,7 @@ const Input = (props) => {
     return (
         <div className="input">
             <label  className="input__label">{label}</label>
-            <input {...inputProps} className="input__content" />
+            <input {...inputProps} className={`input__content ${touched && errorMessage ? 'error' : ""} `} />
             <span className='input__error' >{ touched && errorMessage }</span>
         </div>
   )

@@ -31,7 +31,15 @@
         width: 80%;
         font-size: 0.9rem;
         margin: 10px 0px 15px 0px;
-        color: #ffcccc;
+        color: #ea6b6b;
     }
 
+}
+
+.error{
+    border-bottom : 1px solid #ea6b6b;
+}
+
+.success{
+    border-bottom : 1px solid #86e886;
 }
