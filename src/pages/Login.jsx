@@ -7,10 +7,13 @@ import Form from '../components/Form/Form'
 import '../../src/App.scss'
 import {login} from '../services/authService'
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux'
+import {loginReducer} from '../store/Slice/auth-slice'
+import { useSelector } from 'react-redux'
 const Login = () => {
 
   const navigate = useNavigate()
+  const dispatch = useDispatch()
 
   const {values , handleSubmit , handleBlur, handleChange , errors , touched} = useFormik({
     initialValues: {
@@ -47,6 +50,7 @@ const loginHandler = async(e) => {
     e.preventDefault()
     const user = await login(values.email,values.password)
     if(user){
+      dispatch(loginReducer(user))
       navigate("/" , {
         replace : true
       })
