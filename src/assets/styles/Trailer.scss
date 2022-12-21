@@ -1,0 +1,27 @@
+.trailer{
+    width: 100vw;
+    height: 100vh;
+    &__back{
+        position: absolute;
+        top: 0.5rem;
+        left:2rem;
+        z-index: 1;
+        svg{
+            font-size: 2rem;
+            fill: #fff;   
+            cursor: pointer;
+            transition: 0.3s all ease-in-out;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+
+    }
+    
+    &__video{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+}

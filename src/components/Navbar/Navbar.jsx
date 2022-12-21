@@ -45,7 +45,7 @@ const Navbar = ({isScrolled}) => {
                 </div>
                 <ul className='navbar__content--links'>
                     {links.map((link, index) => (
-                        <li key={link}>
+                        <li key={index}>
                             <Link to={link.path} >{link.name}</Link>
                         </li>
                     ))}

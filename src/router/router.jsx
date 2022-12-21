@@ -4,6 +4,7 @@ import Register from "../pages/Register";
 import Login from "../pages/Login";
 import GuardedRoute from "./GuardedRoute";
 import { useSelector } from "react-redux";
+import Trailer from "../pages/Trailer";
 
 const createRoutes = () => (
 
@@ -13,6 +14,7 @@ const createRoutes = () => (
                 <Home />
             </GuardedRoute>
         } />
+        <Route path="/trailer" element={<Trailer/>} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
     </Routes>

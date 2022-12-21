@@ -1,0 +1,53 @@
+.poster{
+    position: relative;
+    width: 50%;
+    &__img{
+        filter: brightness(70%);
+        height: 100vh;
+        width: 100vw;
+        object-fit: cover;
+    }
+}
+.banner{
+    position: absolute;
+    bottom: 5rem;
+    left: 5rem;
+    &__title{
+      img{
+        width: 50%;
+      }
+    }
+    &__buttons{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            gap: 0.5rem;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s all ease-in-out;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+        &--play{
+            background-color: #f34242;
+            color: #e7eaf6;
+        }
+        &--info{
+            background-color: #e7eaf6;
+            color: #f34242;
+        }
+    }
+
+}

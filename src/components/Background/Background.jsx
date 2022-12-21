@@ -1,6 +1,6 @@
 import React from 'react'
 import './Background.scss'
-import BackgroundImg from '../../assets/background.jpg'
+import BackgroundImg from '../../assets/img/background.jpg'
 
 const Background = ({children}) => {
   return (

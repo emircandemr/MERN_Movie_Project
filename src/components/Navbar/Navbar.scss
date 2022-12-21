@@ -4,12 +4,12 @@
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
     position: fixed;
     top: 0;
-    left: 0;
     z-index: 2;
     box-sizing: border-box;
-    padding: 0 4rem;
+    padding: 0.5rem 3rem;
     align-items: center;
     transition: 0.3s ease-in-out;
 
@@ -20,8 +20,8 @@
         gap : 1.5rem;
        
        &--logo{
-           font-size: 1.2rem;
-           color: #e7eaf6;
+           font-size: 1rem;
+           color: #f34242;
            font-family: 'Pacifico', cursive;
            letter-spacing: 5px;
        }
@@ -29,6 +29,7 @@
        &--links{
               display: flex;
               gap: 1.5rem;
+              align-items: center;
               li{
                 list-style-type: none;
                 a{
@@ -36,7 +37,7 @@
                     color: #e7eaf6;
                     font-size: 1rem;
                     &:hover{
-                        text-decoration: underline;
+                        color: #f34242;
                     }
                 }
               }
@@ -54,8 +55,10 @@
             gap: 0.4rem;
             align-items: center;
             justify-content: center;
-            padding: 0.2rem;
-            padding-left: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 1rem;
+            transition: 0.3s all ease-in-out;
+
             button {
               background-color: transparent;
               border: none;
@@ -63,15 +66,17 @@
                 outline: none;
               }
               svg {
-                color: white;
-                font-size: 1.2rem;
+                color: gray;
+                font-size: 1rem;
+                cursor: pointer;
+                transition: 0.3s all ease-in-out;
               }
             }
             input {
               width: 0;
               opacity: 0;
               visibility: hidden;
-              transition: 0.3s ease-in-out;
+              transition: 0.3s all ease-in-out;
               background-color: transparent;
               border: none;
               color: white;
@@ -88,8 +93,14 @@
                     outline: none;
                 }
                 svg{
-                    color: red;
-                    font-size: 1.2rem;
+                    color: gray;
+                    font-size: 1rem;
+                    cursor: pointer;
+
+                    &:hover{
+                        color: #f34242;
+                    }
+
                 }
           }
 
@@ -97,16 +108,21 @@
 }
 
 .scrolled{
-    background-color: #121212;
+    background-color: #0A0A0A;
 }
 
 .show-search {
-    border: 1px solid white;
-    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(243, 66, 66, 0.4);
+
     input {
       width: 100%;
       opacity: 1;
       visibility: visible;
-      padding: 0.3rem;
+      padding: 0.2rem;
+
+    }
+    svg{
+        transition: 0.3s all ease-in-out;
+        color: #e7eaf6;
     }
 }
