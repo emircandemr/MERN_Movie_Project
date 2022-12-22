@@ -8,13 +8,15 @@ import '../assets/styles/Home.scss'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../store/Slice/movie-slice';
+import Slider from '../components/Slider/Slider';
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const genresLoaded = useSelector(state => state.movie.genresLoaded)
-
+  const movies = useSelector(state => state.movie.movies)
+  
   const [isScrolling, setIsScrolling] = useState(false)
 
   useEffect(() => {
@@ -25,8 +27,9 @@ const Home = () => {
     if(genresLoaded){
       console.log("debug")
       dispatch(fetchMovies({type : "all"}))
+      console.log('movies',movies)
     }
-  })
+  },[genresLoaded])
 
   window.onscroll = () => {
     setIsScrolling(window.pageYOffset === 0 ? false : true);
@@ -59,6 +62,9 @@ const Home = () => {
             More Info
           </button>
           </div>
+      </div>
+      <div>
+        <Slider movies={movies} ></Slider>
       </div>
     </div>
   )

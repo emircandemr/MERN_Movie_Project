@@ -1,0 +1,29 @@
+.slider{
+    display: flex;
+    flex-direction: column;
+
+    &__content{
+        display: flex;
+        // overflow-x: scroll;
+        // overflow-y: hidden;
+        // scroll-behavior: smooth;
+        // scroll-snap-type: x mandatory;
+        // -webkit-overflow-scrolling: touch;
+        // -ms-overflow-style: none;
+        // scrollbar-width: none;
+        gap: 1rem;
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+        
+    }
+    &__title{
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+}

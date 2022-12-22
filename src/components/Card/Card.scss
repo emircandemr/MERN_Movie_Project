@@ -1,0 +1,14 @@
+.movieCard{
+    max-width: 250px;
+    width: 250px;
+    cursor: pointer;
+    position: relative;
+    // box-sizing: border-box;
+    img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 5px;
+        z-index: 10;
+    }
+}
