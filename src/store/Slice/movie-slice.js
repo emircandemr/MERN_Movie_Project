@@ -23,12 +23,12 @@ const createArrayFromRawData = async (rawData,moviesArray,genres) => {
     return moviesArray;
 }
 
-// export const getMoviesTrailers = createAsyncThunk('movie/getTrailers', async (movieId) => {
-//     const response = await baseHTTP.get(`movie/${movieId}/videos`);
-//     const result = response.data.results.filter((video) => video.type === 'Trailer');
-//     console.log(result)
-//     return result
-// })
+export const getMovieTrailer = createAsyncThunk('movie/trailer' ,async (movie) => {
+    const type = movie?.media_type === 'movie' ? 'movie' : 'tv'
+    const response = await baseHTTP.get(`${type}/${movie.id}/videos`)
+    const result = response?.data.results.find((video) => video.type === 'Trailer');
+    return result?.key
+})
 
 
 export const fetchMovies = createAsyncThunk('movie/trending',async ({type},thunkAPI) => {
@@ -50,19 +50,28 @@ export const movieSlice = createSlice({
         movies : [],
         genres : [],
         genresLoaded : false,
+        status : 'idle',
+        trailer : ''
     },
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(getGenres.pending,(state, action) => {
+            state.status = 'pending';
+        })
         builder.addCase(getGenres.fulfilled,(state, action) => {
             state.genres = action.payload;
             state.genresLoaded = true;
         }),
+        builder.addCase(fetchMovies.pending,(state, action) => {
+            state.status = 'pending';
+        }),
         builder.addCase(fetchMovies.fulfilled,(state, action) => {
             state.movies = action.payload;
+            state.status = 'succeeded';
+        }),
+        builder.addCase(getMovieTrailer.fulfilled,(state, action) => {
+            state.trailer = action.payload;
         })
-        // builder.addCase(getMoviesTrailers.fulfilled,(state, action) => {
-        //     state.trailers = action.payload;
-        // })
     }
 })
     

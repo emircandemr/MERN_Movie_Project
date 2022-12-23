@@ -2,13 +2,12 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar/Navbar';
 import {FaPlay} from 'react-icons/fa'
 import {AiOutlineInfoCircle} from 'react-icons/ai'
-import poster from '../assets/img/poster.jpg'
-import banner from '../assets/img/banner.png'
 import '../assets/styles/Home.scss'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchMovies, getGenres } from '../store/Slice/movie-slice';
 import Slider from '../components/Slider/Slider';
+import Loader from '../components/Loader/Loader';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -16,20 +15,22 @@ const Home = () => {
 
   const genresLoaded = useSelector(state => state.movie.genresLoaded)
   const movies = useSelector(state => state.movie.movies)
-  
+  const status = useSelector(state => state.movie.status)
   const [isScrolling, setIsScrolling] = useState(false)
+  const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 60))
 
   useEffect(() => {
-    dispatch(getGenres())
-  },[])
+    if(status === 'idle'){
+      dispatch(getGenres())
+    }
+  },[dispatch,status])
+
 
   useEffect(() => {
     if(genresLoaded){
-      console.log("debug")
       dispatch(fetchMovies({type : "all"}))
-      console.log('movies',movies)
     }
-  },[genresLoaded])
+  },[dispatch,genresLoaded])
 
   window.onscroll = () => {
     setIsScrolling(window.pageYOffset === 0 ? false : true);
@@ -38,34 +39,45 @@ const Home = () => {
 
   const playTrailer = () => {
     navigate("/trailer" , {
-      replace : true
+      replace : true,
+      state : {
+        movie : movies[randomNumber]
+      }
     })
   }
 
+
+
   return (
     <div>
+      {status === 'pending' && <Loader/>}
       <Navbar isScrolled={isScrolling} ></Navbar>
-      <div className='poster'>
-        <img src={poster} className='poster__img' />
-      </div>
-      <div className='banner'>
-        <div className='banner__title'>
-          <img src={banner} />
+      {movies.length > 0 &&
+      <div> 
+        <div className='poster'>
+          <img src={`https://image.tmdb.org/t/p/original${movies[randomNumber].image}`} className='poster__img' />
         </div>
-        <div className='banner__buttons'>
-          <button className='banner__buttons--play' onClick={playTrailer}>
-            <FaPlay />
-            Play
-          </button>
-          <button className='banner__buttons--info'  >
-            <AiOutlineInfoCircle />
-            More Info
-          </button>
+        <div className='banner'>
+          <div className='banner__title'>
+            <h1>{movies[randomNumber].name}</h1>
           </div>
+          <div className='banner__buttons'>
+            <button className='banner__buttons--play' onClick={playTrailer}>
+              <FaPlay />
+              Play
+            </button>
+            <button className='banner__buttons--info'  >
+              <AiOutlineInfoCircle />
+              More Info
+            </button>
+            </div>
+        </div>
+        <div>
+          <Slider movies={movies} ></Slider>
+        </div>
       </div>
-      <div>
-        <Slider movies={movies} ></Slider>
-      </div>
+      }
+
     </div>
   )
 }

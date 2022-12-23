@@ -9,16 +9,27 @@
     }
 }
 .banner{
+    width: 30%;
     position: absolute;
     bottom: 5rem;
-    left: 5rem;
+    left: 3rem;
+
     &__title{
-      img{
-        width: 50%;
-      }
+        font-size: 2rem;
+        font-weight: 600;
+        color: #fff;
+        text-align: center;
+        font-family: 'Archivo Black', sans-serif;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: whitesmoke;
     }
+    //   img{
+    //     width: 50%;
+    //   }
+    
     &__buttons{
-        width: 50%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
