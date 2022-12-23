@@ -66,7 +66,7 @@
                 outline: none;
               }
               svg {
-                color: gray;
+                color: white;
                 font-size: 1rem;
                 cursor: pointer;
                 transition: 0.3s all ease-in-out;
@@ -83,6 +83,9 @@
               &:focus {
                 outline: none;
               }
+              &::placeholder {
+                color: white;
+              }
             }
           }
 
@@ -93,12 +96,12 @@
                     outline: none;
                 }
                 svg{
-                    color: gray;
+                    color: #f34242;
                     font-size: 1rem;
                     cursor: pointer;
 
                     &:hover{
-                        color: #f34242;
+                        color:  #f34242;
                     }
 
                 }
@@ -112,7 +115,7 @@
 }
 
 .show-search {
-    border: 1px solid rgba(243, 66, 66, 0.4);
+    border: 1px solid white;
 
     input {
       width: 100%;

@@ -34,7 +34,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
                 </div>
                 <div className='overlay__content--info--descr' >
                     <div className='overlay__content--info--descr--text'>
-                        <h3>{movie.title}</h3>
+                        <h3>{movie.name}</h3>
                         <p>{movie.overview}</p>
                     </div>
                     <div className='overlay__content--info--descr--content'>

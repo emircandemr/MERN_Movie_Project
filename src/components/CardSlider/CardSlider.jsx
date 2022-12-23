@@ -10,6 +10,17 @@ const CardSlider = ({movies,title}) => {
   const [showArrow, setShowArrow] = useState(false);
 
   const handleArrow = (direction) => {
+    let distance = moviesSliderRef.current.getBoundingClientRect().x - 50;
+    if(direction === 'left' && scrollX > 0){
+      moviesSliderRef.current.style.transform = `translateX(${230 + distance}px)`;
+      setScrollX(scrollX - 1);
+      console.log('scrollX',scrollX)
+    }
+    if(direction === 'right' && scrollX < movies.length - 5 ){
+      moviesSliderRef.current.style.transform = `translateX(${-230 + distance}px)`;
+      setScrollX(scrollX + 1);
+      console.log('scrollX',scrollX)
+    }
   }
 
   return (

@@ -3,14 +3,19 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem 0;
-    position: relative;
+    // position: relative;
 
     &__title{
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 1rem;
       margin-left: 3rem;
-      color: #fff;
+      font-family: 'Archivo Black', sans-serif;
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: #545353;
+
+
     }
 
     &__content{
@@ -21,49 +26,60 @@
         margin-left: 50px;
     }
 
-    &__arrow{
-        width: 50px;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        z-index: 99;
-        transition: 0.3s ease-in-out;
-
-        svg{
-            font-size: 2rem;
-            color: #fff;
-            cursor: pointer;
-            position: absolute;
-            top: 65%;
-            transform: translateY(-65%);
-
-            &:hover{
-                color: #f34242;
-            }
-        }
-
-        &--left{
-            left: 0;
-            svg{
-                left: 10px;
-            }
-        }
-
-        &--right{
-            right: 0;
-            svg{
-                right: 10px;
-            }
-        }
-
-        &--hide{
+    &__wrapper{
+        overflow-x: auto;
+        overflow-y: hidden;
+        scroll-behavior: smooth;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar{
             display: none;
         }
-
     }
+
+    // &__arrow{
+    //     width: 50px;
+    //     height: 100%;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     position: absolute;
+    //     top: 0;
+    //     bottom: 0;
+    //     // z-index: 99;
+    //     transition: 0.3s ease-in-out;
+
+    //     svg{
+    //         font-size: 2rem;
+    //         color: #fff;
+    //         cursor: pointer;
+    //         position: absolute;
+    //         top: 65%;
+    //         transform: translateY(-65%);
+
+    //         &:hover{
+    //             color: #f34242;
+    //         }
+    //     }
+
+    //     &--left{
+    //         left: 0;
+    //         svg{
+    //             left: 10px;
+    //         }
+    //     }
+
+    //     &--right{
+    //         right: 0;
+    //         svg{
+    //             right: 10px;
+    //         }
+    //     }
+
+    //     &--hide{
+    //         display: none;
+    //     }
+
+    // }
 
 }

@@ -19,6 +19,7 @@
         justify-content: center;
         align-items: center;
         position: absolute;
+        z-index: 99;
         left: 50%;
         top: 50%;
         background-color: #18191A;
@@ -71,7 +72,7 @@
                     color: white;
                     padding-right: 1.5rem;
                     h3{
-                        color: #f34242;
+                        color: #545353;
                     }
                     p{
                         margin-bottom: 1rem;
@@ -92,7 +93,7 @@
                         margin: 0;
                         li{
                             margin-bottom: 0.9rem;
-                            color: gray;
+                            color: #545353;
                             font-weight: 600;
                             font-size: 0.9rem;
                             
