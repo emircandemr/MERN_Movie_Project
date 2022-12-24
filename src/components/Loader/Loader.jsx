@@ -1,15 +1,14 @@
-import { Puff } from  'react-loader-spinner'
+import { InfinitySpin } from  'react-loader-spinner'
+import './Loader.scss'
 
 const Loader = () => {
     return (
-        <Puff
-        radius={1}
-        ariaLabel="puff-loading"
-        wrapperStyle={{}}
-        visible={true}
+      <div className='loader' >
+      <InfinitySpin 
+        width='200'
+        color="#fff"
       />
-    // <h1>Loading.....</h1>
-
+      </div>
     )
 }
 
