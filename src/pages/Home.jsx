@@ -72,9 +72,7 @@ const Home = () => {
             </button>
             </div>
         </div>
-        <div>
           <Slider movies={movies} ></Slider>
-        </div>
       </div>
       }
 
