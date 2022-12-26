@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import './Navbar.scss'
 import {FaPowerOff, FaSearch} from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchMoviesWithGenre } from '../../store/Slice/movie-slice'
 
-const Navbar = ({isScrolled}) => {
+const Navbar = ({isScrolled,isGenresActive=false}) => {
 
     const links = [
         {
@@ -27,14 +29,19 @@ const Navbar = ({isScrolled}) => {
             path: '/my-list'
         }
     ]
-
+    const dipatch = useDispatch()
     const [showSearch, setShowSearch] = useState(false)
     const [inputHover,setInputHover] = useState(false)
+    const genres = useSelector(state => state.movie.genres)
 
     const onBlurHandler = () => {
         if(!inputHover){
             setShowSearch(false)
         }
+    }
+
+    const getMoviesWithGenre = (genreId) => {
+        dipatch(fetchMoviesWithGenre({type : 'movie',genre : genreId}))
     }
 
   return (
@@ -49,7 +56,16 @@ const Navbar = ({isScrolled}) => {
                             <Link to={link.path} >{link.name}</Link>
                         </li>
                     ))}
-                    </ul>
+                </ul>
+                {isGenresActive && 
+                <select 
+                onChange={(e) => getMoviesWithGenre(e.target.value)}
+                className='navbar__content--genres'>
+                    {genres.map((genre,index) => (
+                    <option key={index} value={genre.id}>{genre.name}</option>
+                ))}
+                </select>
+                }
             </div>
             <div className='navbar__footer'>
                  <div className={`${showSearch ? 'show-search' : ''} navbar__footer--search `}>

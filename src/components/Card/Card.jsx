@@ -21,6 +21,7 @@ const Card = ({movie}) => {
 
     const handleModal = async (statu) => {
         setTrailerActive(statu)
+        console.log(movie)
         dispatch(getMovieTrailer(movie))
         console.log(trailer)
 

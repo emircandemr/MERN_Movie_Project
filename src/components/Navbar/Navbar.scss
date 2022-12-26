@@ -42,6 +42,22 @@
                 }
               }
        }
+
+       &--genres{
+        background-color: #0A0A0A;
+        color: #e7eaf6;
+        padding: 0.2rem;
+        border-radius: 0.7rem;
+        font-size: 0.8rem;
+        border: 1px solid #545353;
+
+        &:focus{
+            outline: none;
+            border: 1px solid #f34242;
+        }
+
+      }
+
     }
 
     &__footer{

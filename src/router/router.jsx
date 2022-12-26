@@ -6,6 +6,10 @@ import GuardedRoute from "./GuardedRoute";
 import { useSelector } from "react-redux";
 import Trailer from "../pages/Trailer";
 import Movies from "../pages/Movies";
+import TvShows from "../pages/TvShows";
+import NewPopular from "../pages/NewPopular";
+
+
 
 const createRoutes = () => (
 
@@ -19,6 +23,10 @@ const createRoutes = () => (
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/movies" element={<Movies />} />
+        <Route path="/tv-shows" element={<TvShows />} />
+        <Route path="/new-popular" element={<NewPopular />} />
+
+
     </Routes>
 )
 

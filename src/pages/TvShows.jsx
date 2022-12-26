@@ -26,7 +26,7 @@ const Movies = () => {
   
     useEffect(() => {
       if(genresLoaded){
-        dispatch(fetchMovies({type : "movie"}))
+        dispatch(fetchMovies({type : "tv"}))
       }
     },[dispatch,genresLoaded])
   

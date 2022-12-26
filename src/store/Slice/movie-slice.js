@@ -24,19 +24,32 @@ const createArrayFromRawData = async (rawData,moviesArray,genres) => {
 }
 
 export const getMovieTrailer = createAsyncThunk('movie/trailer' ,async (movie) => {
-    const type = movie?.media_type === 'movie' ? 'movie' : 'tv'
+    // const type = movie?.media_type === 'movie' ? 'movie' : 'tv'
+    const type = movie?.media_type ? movie.media_type : 'movie'
     const response = await baseHTTP.get(`${type}/${movie.id}/videos`)
+    console.log(response)
     const result = response?.data.results.find((video) => video.type === 'Trailer');
     return result?.key
 })
 
+
+export const fetchMoviesWithGenre = createAsyncThunk('movie/genre',async ({genre,type},thunkAPI) => {
+    const {genres} = thunkAPI.getState().movie;
+    const moviesArray = [];
+    for( let i = 1; moviesArray.length < 60 &&  i <= 20; i++){
+        const response = await baseHTTP.get(`discover/${type}`, {params : {page : i , language : 'en-US' , with_genres : genre}})
+        const result = response.data.results
+        createArrayFromRawData(result,moviesArray,genres);
+    }
+    return moviesArray;
+})
 
 export const fetchMovies = createAsyncThunk('movie/trending',async ({type},thunkAPI) => {
     const {genres} = thunkAPI.getState().movie;
 
     const moviesArray = [];
     for( let i = 1; moviesArray.length < 60 &&  i <= 10; i++){
-        const response = await baseHTTP.get(`trending/${type}/week`, {params : {page : i}})
+        const response = await baseHTTP.get(`trending/${type}/week`, {params : {page : i , language : 'en-US' }})
         const result = response.data.results
         createArrayFromRawData(result,moviesArray,genres);
     }
@@ -71,7 +84,15 @@ export const movieSlice = createSlice({
         }),
         builder.addCase(getMovieTrailer.fulfilled,(state, action) => {
             state.trailer = action.payload;
+        }),
+        builder.addCase(fetchMoviesWithGenre.fulfilled,(state, action) => {
+            state.movies = action.payload;
+            state.status = 'succeeded';
+        }),
+        builder.addCase(fetchMoviesWithGenre.pending,(state, action) => {
+            state.status = 'pending';
         })
+
     }
 })
     
