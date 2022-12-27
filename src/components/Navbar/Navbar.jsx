@@ -5,7 +5,7 @@ import {FaPowerOff, FaSearch} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMoviesWithGenre } from '../../store/Slice/movie-slice'
 
-const Navbar = ({isScrolled,isGenresActive=false}) => {
+const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
 
     const links = [
         {
@@ -41,7 +41,7 @@ const Navbar = ({isScrolled,isGenresActive=false}) => {
     }
 
     const getMoviesWithGenre = (genreId) => {
-        dipatch(fetchMoviesWithGenre({type : 'movie',genre : genreId}))
+        dipatch(fetchMoviesWithGenre({type : genre ,genre : genreId}))
     }
 
   return (

@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Slider from '../components/Slider/Slider';
 import { fetchMovies, getGenres } from '../store/Slice/movie-slice';
 import '../assets/styles/Movies.scss'
+import NotFound from '../components/NotFound/NotFound';
 
 const Movies = () => {
 
@@ -38,11 +39,14 @@ const Movies = () => {
   return (
     <div>
       {status === 'pending' && <Loader/>}
-      <Navbar isScrolled={isScrolling} isGenresActive={true} ></Navbar>
+      <Navbar isScrolled={isScrolling} isGenresActive={true} genre='tv' ></Navbar>
       {movies.length > 0 &&
         <div className='moviesPage'>
             <Slider movies={movies} ></Slider>
         </div>
+      }
+      {movies.length === 0 && 
+        <NotFound></NotFound>
       }
 
     </div>

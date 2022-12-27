@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Slider from '../components/Slider/Slider';
 import { fetchMovies, getGenres } from '../store/Slice/movie-slice';
 import '../assets/styles/Movies.scss'
+import NotFound from '../components/NotFound/NotFound';
 
 const Movies = () => {
 
@@ -44,6 +45,10 @@ const Movies = () => {
             <Slider movies={movies} ></Slider>
         </div>
       }
+       {movies.length === 0 && 
+        <NotFound></NotFound>
+      }
+
 
     </div>
   )
