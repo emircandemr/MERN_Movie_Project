@@ -1,4 +1,5 @@
 import {createSlice , createAsyncThunk} from "@reduxjs/toolkit";
+import axios from "axios";
 import {baseHTTP} from '../../services/baseHTTP'
  
 export const getGenres = createAsyncThunk('movie/getGenres', async() => {
@@ -57,6 +58,12 @@ export const fetchMovies = createAsyncThunk('movie/trending',async ({type},thunk
 })
 
 
+export const getUserLikedMovies = createAsyncThunk('movie/liked' ,async (email) => {
+    const {data : {movies}} = await axios.get(`http://localhost:5000/api/users/liked/${email}`)
+    return movies;
+})
+
+
 export const movieSlice = createSlice({
     name: 'movie',
     initialState : {
@@ -64,7 +71,8 @@ export const movieSlice = createSlice({
         genres : [],
         genresLoaded : false,
         status : 'idle',
-        trailer : ''
+        trailer : '',
+        LikedMovies : []
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -91,8 +99,14 @@ export const movieSlice = createSlice({
         }),
         builder.addCase(fetchMoviesWithGenre.pending,(state, action) => {
             state.status = 'pending';
+        }),
+        builder.addCase(getUserLikedMovies.fulfilled,(state, action) => {
+            state.LikedMovies = action.payload;
+            state.status = 'succeeded';
+        }),
+        builder.addCase(getUserLikedMovies.pending,(state, action) => {
+            state.status = 'pending';
         })
-
     }
 })
     

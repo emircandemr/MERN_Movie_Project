@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './TrailerModal.scss'
 import ReactPlayer from 'react-player'
 import { IoPlayCircleSharp } from "react-icons/io5";
@@ -6,8 +6,45 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
 import { BiChevronDown } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
+import auth from '../../utils/firebase-config';
+import {useNavigate} from 'react-router-dom'
+import axios from 'axios';
+import { onAuthStateChanged } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
+
+    const navigate = useNavigate()
+    const [email,setEmail] = useState(undefined)
+
+    onAuthStateChanged(auth,(currentUser) => {
+        if(currentUser){
+            setEmail(currentUser.email)
+        }
+        else{
+            navigate('/login', {replace: true})
+        }
+    })
+
+    const addToMovieLikedList = async () => {
+        try{
+            await axios.post('http://localhost:5000/api/users/add', {email, movie :movie})
+            toast('Movie added to your list',
+            {
+                icon: '👌',
+                style: {
+                background: '#333',
+                color: '#fff',
+                },
+            })
+            
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
+
+
   return (
     <div className='overlay'>
 
@@ -30,7 +67,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
                     <RiThumbDownFill title="Dislike" />
                     {isLiked ? (
                     <BsCheck title="Remove from List"/>) : 
-                    (<AiOutlinePlus title="Add to my list"  />)}
+                    (<AiOutlinePlus title="Add to my list" onClick={addToMovieLikedList}  />)}
                 </div>
                 <div className='overlay__content--info--descr' >
                     <div className='overlay__content--info--descr--text'>
