@@ -5,9 +5,10 @@ import {AiOutlineInfoCircle} from 'react-icons/ai'
 import '../assets/styles/Home.scss'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchMovies, getGenres } from '../store/Slice/movie-slice';
+import { fetchMovies, getGenres, getMovieTrailer } from '../store/Slice/movie-slice';
 import Slider from '../components/Slider/Slider';
 import Loader from '../components/Loader/Loader';
+import TrailerModal from '../components/TrailerModal/TrailerModal';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -18,6 +19,9 @@ const Home = () => {
   const status = useSelector(state => state.movie.status)
   const [isScrolling, setIsScrolling] = useState(false)
   const [randomNumber, setRandomNumber] = useState(Math.floor(Math.random() * 60))
+  const [isTrailerActive, setTrailerActive] = useState(false)
+  const trailer = useSelector(state => state.movie.trailer)
+
 
   useEffect(() => {
     if(status === 'idle'){
@@ -46,6 +50,12 @@ const Home = () => {
     })
   }
 
+  const handleModal = async (statu) => {
+    setTrailerActive(statu)
+    dispatch(getMovieTrailer(movies[randomNumber]))
+    console.log(trailer)
+}
+
 
 
   return (
@@ -66,7 +76,7 @@ const Home = () => {
               <FaPlay />
               Play
             </button>
-            <button className='banner__buttons--info'  >
+            <button className='banner__buttons--info'  onClick={handleModal}  >
               <AiOutlineInfoCircle />
               More Info
             </button>
@@ -75,6 +85,9 @@ const Home = () => {
           <Slider movies={movies} ></Slider>
       </div>
       }
+       {isTrailerActive &&
+           <TrailerModal movie={movies[randomNumber]} handleModal={handleModal} isLiked={false} trailer={trailer}/>
+        }
 
     </div>
   )

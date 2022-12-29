@@ -40,8 +40,25 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
             
         }
         catch(err){
+            toast(err,
+            {
+                icon: '❌',
+                style: {
+                background: '#333',
+                color: '#fff',
+                },
+            })
             console.log(err)
         }
+    }
+
+    const playTrailer = () => {
+        navigate("/trailer" , {
+            replace : true,
+            state : {
+                movie : movie
+            }
+        })
     }
 
 
@@ -62,7 +79,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
              />
             <div className='overlay__content--info'>
                 <div className='overlay__content--info--icons'>
-                    <IoPlayCircleSharp title="Play"/>
+                    <IoPlayCircleSharp title="Play" onClick={playTrailer}/>
                     <RiThumbUpFill title="Like" />
                     <RiThumbDownFill title="Dislike" />
                     {isLiked ? (
