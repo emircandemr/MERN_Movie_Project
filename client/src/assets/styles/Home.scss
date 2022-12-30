@@ -24,10 +24,6 @@
         -webkit-background-clip: text;
         color: whitesmoke;
     }
-    //   img{
-    //     width: 50%;
-    //   }
-    
     &__buttons{
         width: 100%;
         display: flex;
@@ -61,4 +57,31 @@
         }
     }
 
+}
+
+
+@media screen and (max-width : 768px){
+    .poster{
+        width : 100%;
+        &__img{
+            height: 50vh;
+            width: 100vw;
+            object-fit: cover;
+        }
+    }
+    .banner{
+        width: 100%;
+        position: absolute;
+        bottom: 60vh;
+        left: 0;
+        &__title{
+            font-size: 1rem;
+        }
+        &__buttons{
+            button{
+                font-size: 0.8rem;
+            }
+        }
+    
+    }
 }

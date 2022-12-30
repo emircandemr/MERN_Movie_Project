@@ -5,6 +5,13 @@
     justify-content: center;
     align-items: center;
     gap: 3rem;
+}
 
-    // flex-direction: column;
+@media screen and (max-width : 768px){
+    .sliderContainer{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        gap: 1rem;
+    }
 }
