@@ -4,10 +4,10 @@ import './Navbar.scss'
 import {FaPowerOff, FaSearch} from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchMoviesWithGenre } from '../../store/Slice/movie-slice'
-import {GiHamburgerMenu} from 'react-icons/gi'
-import {AiOutlineClose} from 'react-icons/ai'
-import {AiOutlineArrowRight} from 'react-icons/ai'
-import { useRef } from 'react'
+import {signOutFromFirebase } from '../../services/authService'
+import { logoutReducer } from '../../store/Slice/auth-slice'
+import toast from 'react-hot-toast'
+import SearchMovie from '../SearchMovie/SearchMovie'
 
 const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
 
@@ -33,11 +33,13 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
             path: '/my-list'
         }
     ]
-    const dipatch = useDispatch()
+    const dispatch = useDispatch()
     const [showSearch, setShowSearch] = useState(false)
     const [inputHover,setInputHover] = useState(false)
     const genres = useSelector(state => state.movie.genres)
     const [isMenuActive,setIsMenuActive] = useState(false)
+    const [searchedInput,setSearchedInput] = useState('')
+    const [showSearchResult,setShowSearchResult] = useState(false)
 
     const onBlurHandler = () => {
         if(!inputHover){
@@ -46,10 +48,27 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
     }
 
     const getMoviesWithGenre = (genreId) => {
-        dipatch(fetchMoviesWithGenre({type : genre ,genre : genreId}))
+        dispatch(fetchMoviesWithGenre({type : genre ,genre : genreId}))
     }
 
+    const logOutHandler = () => {
+        dispatch(logoutReducer())
+        signOutFromFirebase()
+        toast('Logged Out Successfully',
+        {
+            icon: '👻',
+            style: {
+            background: '#333',
+            color: '#fff',
+            },
+        }
+        );
+    }
 
+    const searchMovieHandler = (e) => {
+        setShowSearchResult(true)
+        setSearchedInput(e.target.value)
+    }
 
   return (
         <nav className={`${isScrolled ? 'scrolled' : ''} navbar ${isMenuActive ? 'active' : ''} `}
@@ -79,21 +98,31 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
                     }
                 </div>
                 <div className='navbar__footer'>
-                        <div className={`${showSearch ? 'show-search' : ''} navbar__footer--search `}>
-                        <button onFocus={() => setShowSearch(true)} onBlur={onBlurHandler} >
-                            <FaSearch />
-                        </button>
-                        <input type='text' placeholder='Search'
-                        onMouseEnter={() => setInputHover(true)}
-                        onMouseLeave={() => setInputHover(false)}
-                        onBlur={() => {
-                            setInputHover(false)
-                            onBlurHandler()
-                        }} />
-                    </div>   
-                    <button className='navbar__footer--logout'>
-                        <FaPowerOff />
-                    </button> 
+                    <div className='navbar__footer--container' >
+                    <div className={`${showSearch ? 'show-search' : ''} navbar__footer--search `}>
+                    <button onFocus={() => setShowSearch(true)} onBlur={onBlurHandler} >
+                        <FaSearch />
+                    </button>
+                    <input type='text' placeholder='Search'
+                    onMouseEnter={() => setInputHover(true)}
+                    onMouseLeave={() => setInputHover(false)}
+                    onBlur={() => {
+                        // setInputHover(false)
+                        // onBlurHandler()
+                        // setIsSearchActive(false)
+                    }}
+                    onChange={(e) => searchMovieHandler(e)}/>
+                    </div>
+                    {showSearchResult && 
+                    <SearchMovie
+                    showSearchResult={showSearchResult}
+                     setShowSearchResult={setShowSearchResult} searchedInput={searchedInput} >
+                    </SearchMovie>}
+                    </div>
+                <button className='navbar__footer--logout'
+                onClick={logOutHandler}>
+                    <FaPowerOff />
+                </button> 
                 </div>
             </div>
         

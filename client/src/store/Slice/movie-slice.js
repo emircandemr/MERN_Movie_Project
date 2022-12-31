@@ -63,6 +63,16 @@ export const getUserLikedMovies = createAsyncThunk('movie/liked' ,async (email) 
     return movies;
 })
 
+export const searchMovies = createAsyncThunk('movie/search', async({query},thunkAPI) => {
+    const {genres} = thunkAPI.getState().movie;
+    const moviesArray = [];
+        const response = await baseHTTP.get(`search/movie`, {params : {language : 'en-US' , query : query}})
+        const result = response.data.results
+        createArrayFromRawData(result,moviesArray,genres);
+        return moviesArray;
+})
+            
+
 
 export const movieSlice = createSlice({
     name: 'movie',
@@ -72,7 +82,8 @@ export const movieSlice = createSlice({
         genresLoaded : false,
         status : 'idle',
         trailer : '',
-        LikedMovies : []
+        LikedMovies : [],
+        searchedMovies : []
     },
     reducers: {},
     extraReducers: (builder) => {
@@ -106,6 +117,10 @@ export const movieSlice = createSlice({
         }),
         builder.addCase(getUserLikedMovies.pending,(state, action) => {
             state.status = 'pending';
+        }),
+        builder.addCase(searchMovies.fulfilled,(state, action) => {
+            state.searchedMovies = action.payload;
+            state.status = 'succeeded';
         })
     }
 })

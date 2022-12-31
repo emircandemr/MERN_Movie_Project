@@ -1,0 +1,42 @@
+.search{
+    width: 350px;
+    height: 100px;
+    color: white;
+    padding: 0.5rem;
+    border: 1px solid #212121;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #121212;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    border-top: none;
+    position: absolute;
+    overflow-y: auto;
+
+    &__movie{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.5rem;
+        cursor: pointer;
+        transition: 0.1s all ease-in-out;
+        &:hover{
+            background-color: #212121;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+     }
+      &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: #f34242;
+        border-radius: 10px;
+      }
+
+}
+
+.hide{
+    display: none;
+}

@@ -59,7 +59,7 @@ export const register = async (email, password) => {
 
 }
 
-export const logout = async () => {
+export const signOutFromFirebase = async () => {
     try {
         await signOut(auth);
     } catch (error) {

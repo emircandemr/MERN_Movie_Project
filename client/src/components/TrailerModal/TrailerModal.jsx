@@ -66,7 +66,6 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
     <div className='overlay'>
 
         <div className='overlay--layer' onClick={() => handleModal(false)} ></div>
-        {trailer}
         <div className='overlay__content'>
             <ReactPlayer
                 className='overlay__content--video'

@@ -56,12 +56,8 @@
                       margin-top: 0.5rem;
                     }
                 }
-
-
-
               }
        }
-
        &--genres{
         background-color: #0A0A0A;
         color: #e7eaf6;
@@ -69,16 +65,12 @@
         border-radius: 0.7rem;
         font-size: 0.8rem;
         border: 1px solid #545353;
-
         &:focus{
             outline: none;
             border: 1px solid #f34242;
         }
-
       }
-
     }
-
     &__footer{
         display: flex;
         justify-content: center;
@@ -91,7 +83,8 @@
             align-items: center;
             justify-content: center;
             padding: 0.5rem;
-            border-radius: 1rem;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
             transition: 0.3s all ease-in-out;
 
             button {
@@ -104,7 +97,7 @@
                 color: white;
                 font-size: 1rem;
                 cursor: pointer;
-                transition: 0.3s all ease-in-out;
+                transition: 0.2s all ease-in-out;
               }
             }
             input {
@@ -157,16 +150,15 @@
 
 .show-search {
     border: 1px solid white;
-
+    width: 350px;
     input {
       width: 100%;
       opacity: 1;
       visibility: visible;
       padding: 0.2rem;
-
     }
     svg{
-        transition: 0.3s all ease-in-out;
+        transition: 0.1s all ease-in-out;
         color: #e7eaf6;
     }
 }

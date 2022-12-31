@@ -54,7 +54,6 @@ const Home = () => {
   const handleModal = async (statu) => {
     setTrailerActive(statu)
     dispatch(getMovieTrailer(movies[randomNumber]))
-    console.log(trailer)
 }
 
 
