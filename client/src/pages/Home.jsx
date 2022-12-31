@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../components/Navbar/Navbar';
 import {FaPlay} from 'react-icons/fa'
-import {AiOutlineInfoCircle} from 'react-icons/ai'
+import {AiOutlineClose, AiOutlineInfoCircle} from 'react-icons/ai'
 import '../assets/styles/Home.scss'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { fetchMovies, getGenres, getMovieTrailer } from '../store/Slice/movie-sl
 import Slider from '../components/Slider/Slider';
 import Loader from '../components/Loader/Loader';
 import TrailerModal from '../components/TrailerModal/TrailerModal';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Home = () => {
   const navigate = useNavigate();

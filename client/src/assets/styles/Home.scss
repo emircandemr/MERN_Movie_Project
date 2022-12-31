@@ -59,6 +59,10 @@
 
 }
 
+.hamburger__menu{
+    display: none;
+}
+
 
 @media screen and (max-width : 768px){
     .poster{
@@ -73,7 +77,7 @@
         width: 100%;
         position: absolute;
         bottom: 60vh;
-        left: 0;
+        left: 1rem;
         &__title{
             font-size: 1rem;
         }
@@ -84,4 +88,31 @@
         }
     
     }
+
+}
+
+@media screen and (max-width : 480px){
+    .poster{
+        &__img{
+            height: 50vh;
+            width: 100vw;
+            object-fit: cover;
+        }
+    }
+    .banner{
+        width: 100%;
+        position: absolute;
+        bottom: 60vh;
+        left: 1rem;
+        &__title{
+            font-size: 0.6rem;
+        }
+        &__buttons{
+            button{
+                font-size: 0.6rem;
+            }
+        }
+    
+    }
+
 }

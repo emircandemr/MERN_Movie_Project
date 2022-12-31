@@ -6,6 +6,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchMoviesWithGenre } from '../../store/Slice/movie-slice'
 import {GiHamburgerMenu} from 'react-icons/gi'
 import {AiOutlineClose} from 'react-icons/ai'
+import {AiOutlineArrowRight} from 'react-icons/ai'
+import { useRef } from 'react'
 
 const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
 
@@ -47,15 +49,13 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
         dipatch(fetchMoviesWithGenre({type : genre ,genre : genreId}))
     }
 
-    const handleMenu = () => {
-        setIsMenuActive(!isMenuActive)
-    }
-
-
 
 
   return (
-        <nav className={`${isScrolled ? 'scrolled' : ''} navbar`}>
+        <nav className={`${isScrolled ? 'scrolled' : ''} navbar ${isMenuActive ? 'active' : ''} `}
+        onMouseEnter={() => setIsMenuActive(true)}
+        onMouseLeave={() => setIsMenuActive(false)}
+        >
             <div className='navbar__desktop'>
                 <div className='navbar__content'>
                     <div className='navbar__content--logo'>
@@ -95,39 +95,6 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
                         <FaPowerOff />
                     </button> 
                 </div>
-            </div>
-            <div className='navbar__mobile'>
-                <div className='navbar__mobile--logo'
-                onClick={handleMenu}>
-                    {isMenuActive ? <AiOutlineClose /> : <GiHamburgerMenu />}
-                    {/* <GiHamburgerMenu /> */}
-                </div>
-                {/* <div className='navbar__mobile--links'>
-                    <ul>
-                        {links.map((link, index) => (
-                            <li key={index}>
-                                <Link to={link.path} >{link.name}</Link>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-                <div className='navbar__mobile--footer'>
-                    <div className={`${showSearch ? 'show-search' : ''} navbar__mobile--footer-search `}>
-                        <button onFocus={() => setShowSearch(true)} onBlur={onBlurHandler} >
-                            <FaSearch />
-                        </button>
-                        <input type='text' placeholder='Search'
-                        onMouseEnter={() => setInputHover(true)}
-                        onMouseLeave={() => setInputHover(false)}
-                        onBlur={() => {
-                            setInputHover(false)
-                            onBlurHandler()
-                        }} />
-                    </div>
-                    <button className='navbar__mobile--footer-logout'>
-                        <FaPowerOff />
-                    </button>
-                </div> */}
             </div>
         
         </nav>

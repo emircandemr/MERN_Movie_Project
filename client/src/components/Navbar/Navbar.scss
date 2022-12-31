@@ -178,8 +178,13 @@
         display: flex;
         flex-direction: column;
         background-color: #0A0A0A;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
         width: 250px;
         height: 100vh;
+        position: fixed;
+        top: 0;
+        left: -220px;
+        transition: 0.3s ease-in-out;
 
         &__desktop{
             width: 100%;
@@ -195,19 +200,15 @@
         flex-direction: column;
         justify-content: start;
         align-items: center;
-        background-color: #545353;
         
         &--links{
-          background-color: red;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          
           li{
             width: 100%;
-            background-color: #e7eaf6;
-            margin : 0.5rem 0;
+            box-sizing: border-box;
+            text-align: center;
+            margin : 0.5rem 2.5rem 0.5rem 0;
           }
         }
 
@@ -217,13 +218,15 @@
         display: flex;
         flex-direction: column;
         gap: 1rem;
-        background-color: #545353;
         padding: 1rem 0;
         width: 100%;
         height: 10%;
         justify-content: space-between;
         align-items: center;
+
       }
+
+    
   
         &__mobile{
             display: flex;
@@ -232,6 +235,11 @@
             font-size: 1.5rem;
             position: absolute;
             top: 1rem;
+            right: 5px;
         }
     }
+}
+
+.navbar.active{
+    left: 0;
 }
