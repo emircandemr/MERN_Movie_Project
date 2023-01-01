@@ -11,7 +11,7 @@ const routes = createRoutes()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <Provider store={store}>
-      <Router>
+      <Router basename='/'>
         {routes}
         <App />
       </Router>
