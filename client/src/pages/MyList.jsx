@@ -45,6 +45,7 @@ const MyList = () => {
       <Navbar isScrolled={isScrolling} ></Navbar>
       {LikedMovies?.length > 0 ? 
         <div className='likedPage'>
+          
              {LikedMovies.map( (movie,index) => {
                 return <Card movie={movie} key={index}  />
                 })}
