@@ -2,15 +2,8 @@
     "version": 2,
     "builds": [
       {
-        "src": "./backend/index.js",  
+        "src": "index.js",  
         "use": "@vercel/node"
-      },
-      {
-        "src": "./client/dist/index.html",   
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "./client/dist"
-        }
       }
     ],
     "routes": [
