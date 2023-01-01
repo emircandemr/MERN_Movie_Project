@@ -40,3 +40,11 @@
 .hide{
     display: none;
 }
+
+
+@media screen and (max-width: 768px){
+  .search{
+    width : 150px;
+    height: 50px;
+  }
+}

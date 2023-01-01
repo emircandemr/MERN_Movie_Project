@@ -1,13 +1,15 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+require ('dotenv/config');
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/react-movies',{
+mongoose.connect(
+    process.env.DB_CONNECT,{
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

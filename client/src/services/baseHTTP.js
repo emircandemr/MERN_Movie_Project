@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-
 export const baseHTTP = axios.create({
     baseURL: 'https://api.themoviedb.org/3/',
     params : {

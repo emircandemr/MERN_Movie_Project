@@ -203,9 +203,7 @@
             margin : 0.5rem 2.5rem 0.5rem 0;
           }
         }
-
       }
-
       &__footer{
         display: flex;
         flex-direction: column;
@@ -215,11 +213,7 @@
         height: 10%;
         justify-content: space-between;
         align-items: center;
-
       }
-
-    
-  
         &__mobile{
             display: flex;
             justify-content: space-between;
@@ -229,6 +223,9 @@
             top: 1rem;
             right: 5px;
         }
+    }
+    .show-search{
+      width: 150px;
     }
 }
 
