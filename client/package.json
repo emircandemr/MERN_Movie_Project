@@ -1,5 +1,4 @@
 {
-  "homepage": "https://awesome-app.vercel.app",
   "name": "mern-netflix-clone",
   "private": true,
   "version": "0.0.0",
@@ -7,8 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "preinstall": "npx npm-force-resolutions"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
