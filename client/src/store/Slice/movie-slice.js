@@ -57,9 +57,8 @@ export const fetchMovies = createAsyncThunk('movie/trending',async ({type},thunk
     return moviesArray;
 })
 
-
 export const getUserLikedMovies = createAsyncThunk('movie/liked' ,async (email) => {
-    const {data : {movies}} = await axios.get(`https://mern-movie-project-api.vercel.app/api/users/liked/${email}`)
+    const {data : {movies}} = await axios.get(`http://localhost:5000/api/users/liked/${email}`)
     return movies;
 })
 
