@@ -17,7 +17,7 @@
 <div align="center">
 <h3>✨ Live Version </h3>
 
-### [You can see the live version here.](https://vue-nuxt3-kanban-project.vercel.app)
+### [You can see the live version here.](https://moviedb-ed.vercel.app/login)
 </div>
 
 <div align="center">
