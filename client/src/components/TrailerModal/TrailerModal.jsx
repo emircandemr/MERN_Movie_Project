@@ -28,7 +28,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
 
     const addToMovieLikedList = async () => {
         try{
-            await axios.post('http://localhost:5000/api/users/add', {email, movie :movie})
+            await axios.post('https://mern-movie-project.vercel.app/api/users/add', {email, movie :movie})
             toast('Movie added to your list',
             {
                 icon: '👌',

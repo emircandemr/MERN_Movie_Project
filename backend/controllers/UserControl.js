@@ -1,6 +1,7 @@
 const User = require('../models/UserModel');
 
 module.exports.addtoLikedMovies = async (req, res) => {
+
     try{
         const {email, movie} = req.body;
         const user = await User.findOne({email});
@@ -14,11 +15,25 @@ module.exports.addtoLikedMovies = async (req, res) => {
                     likedMovies: [...user.likedMovies, movie]
                 }, {new: true});
         }
-    }else{
-        await User.create({email, likedMovies: [movie]});
     }
-    return res.json({message: 'Movie added to liked movies'})
-    }catch(err){
+    else{
+        const newUser = new User({
+            email,
+            likedMovies: [movie]
+        })
+        newUser.save()
+            .then((user) => {
+                res.json({msg : 'success', user})
+            })
+            .catch((err) => {
+                res.json({msg : 'error', err})
+            })
+
+        // await User.create({email, likedMovies: [movie]});
+    }
+    return res.json({message: 'Movie added to liked movies', movie })
+    }
+    catch(err){
         console.log(err.message);
         return res.json({message: 'Something went wrong'})
     }
@@ -26,6 +41,7 @@ module.exports.addtoLikedMovies = async (req, res) => {
 
 module.exports.getLikedMovies = async (req,res) => {
     try{
+        console.log(req.body)
         const {email} = req.body;
         const user = await User.findOne({email})
         if(user){
