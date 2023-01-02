@@ -4,7 +4,7 @@ const router = require('express').Router();
 
 
 router.post('/add',addtoLikedMovies)
-router.get('/liked/:email',getLikedMovies)
+router.get('/liked',getLikedMovies)
 
 module.exports = router;
 
