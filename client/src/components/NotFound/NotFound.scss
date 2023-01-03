@@ -33,3 +33,21 @@
     }
    }
 }
+
+@media screen and (max-width: 768px){
+    .notFound{
+        margin-left:1rem;
+        .notFound__title{
+            font-size: 2rem;
+        }
+        .notFound__text{
+            font-size: 1rem;
+        }
+
+        button{
+            padding: 0.5rem 0.5rem;
+            font-size: 0.8rem;
+        }
+
+    }
+}

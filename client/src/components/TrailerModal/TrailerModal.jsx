@@ -1,20 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './TrailerModal.scss'
 import ReactPlayer from 'react-player'
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
-import { BiChevronDown } from "react-icons/bi";
 import { BsCheck } from "react-icons/bs";
 import auth from '../../utils/firebase-config';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
 import { onAuthStateChanged } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { removeLikedMovie } from '../../store/Slice/movie-slice';
 
 const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [email,setEmail] = useState(undefined)
 
     onAuthStateChanged(auth,(currentUser) => {
@@ -52,6 +54,32 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
         }
     }
 
+    const removeFromMovieLikedList = () => {
+        try{
+            dispatch(removeLikedMovie(email, movie))
+            toast('Movie removed from your list',
+            {
+                icon: '👌',
+                style: {
+                background: '#333',
+                color: '#fff',
+                },
+            })
+        }
+        catch(err){
+            toast(err,
+                {
+                    icon: '❌',
+                    style: {
+                    background: '#333',
+                    color: '#fff',
+                    },
+                })
+                console.log(err)
+        }
+    }
+
+
     const playTrailer = () => {
         navigate("/trailer" , {
             replace : true,
@@ -60,7 +88,6 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
             }
         })
     }
-
 
   return (
     <div className='overlay'>
@@ -77,12 +104,12 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
                 muted={true}
              />
             <div className='overlay__content--info'>
-                <div className='overlay__content--info--icons'>
-                    <IoPlayCircleSharp title="Play" onClick={playTrailer}/>
-                    <RiThumbUpFill title="Like" />
+                <div className='overlay__content--info--icons '>
+                    <IoPlayCircleSharp title="Play" onClick={playTrailer}  />
+                    <RiThumbUpFill title="Like"  />
                     <RiThumbDownFill title="Dislike" />
                     {isLiked ? (
-                    <BsCheck title="Remove from List"/>) : 
+                    <BsCheck title="Remove from List"  onClick={removeFromMovieLikedList}/>) : 
                     (<AiOutlinePlus title="Add to my list" onClick={addToMovieLikedList}  />)}
                 </div>
                 <div className='overlay__content--info--descr' >

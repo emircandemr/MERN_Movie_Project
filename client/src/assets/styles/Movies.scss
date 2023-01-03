@@ -1,21 +1,46 @@
 .moviesPage{
     margin-top: 4rem;
 }
-.likedPage{
+.myList{
     width: 100vw;
     margin-top: 6rem;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     gap: 2rem;
+
+    &__title{
+        display: none;
+        font-size: 1.5rem;
+        font-weight: 600;
+        font-family: 'Archivo Black', sans-serif;
+        background-clip: text;
+        color: #545353;
+    }
+
+    &__wrapper{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+
 }
 
 @media screen and (max-width: 768px){
     .moviesPage{
         margin-top: 0.5rem;
     }
-    .likedPage{
-        margin-top: 4rem;
+    .myList{
+        margin-top: 0rem;
+
+        &__title{
+            display: block;
+        }
+
     }
 }

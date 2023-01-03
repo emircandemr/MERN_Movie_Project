@@ -44,11 +44,13 @@ const MyList = () => {
       {status === 'pending' && <Loader/>}
       <Navbar isScrolled={isScrolling} ></Navbar>
       {LikedMovies?.length > 0 ? 
-        <div className='likedPage'>
-          
+        <div className='myList'>
+          <h1 className='myList__title'>My List</h1>
+          <div className='myList__wrapper'>
              {LikedMovies.map( (movie,index) => {
-                return <Card movie={movie} key={index}  />
-                })}
+               return <Card movie={movie} key={index} isLiked={true} />
+              })}
+            </div>
         </div>
         :
         <NotFound></NotFound>

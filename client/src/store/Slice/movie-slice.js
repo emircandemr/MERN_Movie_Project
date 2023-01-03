@@ -1,5 +1,6 @@
 import {createSlice , createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
+import { removeFromLikedMovies } from "../../../../backend/controllers/UserControl";
 import {baseHTTP} from '../../services/baseHTTP'
  
 export const getGenres = createAsyncThunk('movie/getGenres', async() => {
@@ -62,6 +63,11 @@ export const getUserLikedMovies = createAsyncThunk('movie/liked' ,async (email) 
     return movies;
 })
 
+export const removeLikedMovie = createAsyncThunk('movie/removeLiked' ,async (email,movie) => {
+    const {data : {movies}} = await axios.put(`https://mern-movie-project.vercel.app/api/users/remove`,email,movie)
+    return movies;
+})
+
 export const searchMovies = createAsyncThunk('movie/search', async({query},thunkAPI) => {
     const {genres} = thunkAPI.getState().movie;
     const moviesArray = [];
@@ -119,6 +125,13 @@ export const movieSlice = createSlice({
         }),
         builder.addCase(searchMovies.fulfilled,(state, action) => {
             state.searchedMovies = action.payload;
+            state.status = 'succeeded';
+        }),
+        builder.addCase(removeLikedMovie.pending,(state, action) => {
+            state.status = 'pending';
+        }),
+        builder.addCase(removeLikedMovie.fulfilled,(state, action) => {
+            state.LikedMovies = action.payload;
             state.status = 'succeeded';
         })
     }

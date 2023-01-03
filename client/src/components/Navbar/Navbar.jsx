@@ -34,18 +34,10 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
         }
     ]
     const dispatch = useDispatch()
-    const [showSearch, setShowSearch] = useState(false)
-    const [inputHover,setInputHover] = useState(false)
     const genres = useSelector(state => state.movie.genres)
     const [isMenuActive,setIsMenuActive] = useState(false)
     const [searchedInput,setSearchedInput] = useState('')
     const [showSearchResult,setShowSearchResult] = useState(false)
-
-    const onBlurHandler = () => {
-        if(!inputHover){
-            setShowSearch(false)
-        }
-    }
 
     const getMoviesWithGenre = (genreId) => {
         dispatch(fetchMoviesWithGenre({type : genre ,genre : genreId}))
@@ -99,18 +91,9 @@ const Navbar = ({isScrolled,genre='movie',isGenresActive=false}) => {
                 </div>
                 <div className='navbar__footer'>
                     <div className='navbar__footer--container' >
-                    <div className={`${showSearch ? 'show-search' : ''} navbar__footer--search `}>
-                    <button onFocus={() => setShowSearch(true)} onBlur={onBlurHandler} >
+                    <div className={`navbar__footer--search `}>
                         <FaSearch />
-                    </button>
-                    <input type='text' placeholder='Search'
-                    onMouseEnter={() => setInputHover(true)}
-                    onMouseLeave={() => setInputHover(false)}
-                    onBlur={() => {
-                        // setInputHover(false)
-                        // onBlurHandler()
-                        // setIsSearchActive(false)
-                    }}
+                    <input type='text' placeholder='Search for a movie, tv show, person...'
                     onChange={(e) => searchMovieHandler(e)}/>
                     </div>
                     {showSearchResult && 

@@ -4,11 +4,10 @@ import TrailerModal from '../TrailerModal/TrailerModal';
 import { useDispatch, useSelector } from 'react-redux';
 import {getMovieTrailer} from '../../store/Slice/movie-slice'
 
-const Card = ({movie}) => {
+const Card = ({movie,isLiked=false}) => {
     const dispatch = useDispatch()
     const trailer = useSelector(state => state.movie.trailer)
     const [isTrailerActive, setTrailerActive] = useState(false)
-    const [isLiked, setIsLiked] = useState(false)
 
     const handleModal = async (statu) => {
         setTrailerActive(statu)
