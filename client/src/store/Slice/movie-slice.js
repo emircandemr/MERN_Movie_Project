@@ -25,10 +25,8 @@ const createArrayFromRawData = async (rawData,moviesArray,genres) => {
 }
 
 export const getMovieTrailer = createAsyncThunk('movie/trailer' ,async (movie) => {
-    // const type = movie?.media_type === 'movie' ? 'movie' : 'tv'
     const type = movie?.media_type ? movie.media_type : 'movie'
     const response = await baseHTTP.get(`${type}/${movie.id}/videos`)
-    console.log(response)
     const result = response?.data.results.find((video) => video.type === 'Trailer');
     return result?.key
 })

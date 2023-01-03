@@ -55,7 +55,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
     }
 
     const removeFromMovieLikedList = () => {
-        dispatch(removeLikedMovie({email,movie}))
+        dispatch(removeLikedMovie({email,movie:movie}))
         toast('Movie removed from your list',
         {
             icon: '👌',
