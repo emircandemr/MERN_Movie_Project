@@ -61,7 +61,7 @@ export const getUserLikedMovies = createAsyncThunk('movie/liked' ,async (email) 
 })
 
 export const removeLikedMovie = createAsyncThunk('movie/removeLiked' ,async ({email,movie}) => {
-    const {data : {movies}} = await axios.put(`https://mern-movie-project.vercel.app/api/users/remove`,email,movie)
+    const {data : {movies}} = await axios.put(`http://localhost:5000/api/users/remove`,email,movie)
     return movies;
 })
 

@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player'
 import { IoPlayCircleSharp } from "react-icons/io5";
 import { AiOutlinePlus } from "react-icons/ai";
 import { RiThumbUpFill, RiThumbDownFill } from "react-icons/ri";
-import { BsCheck } from "react-icons/bs";
+import {AiOutlineCheck} from 'react-icons/ai'
 import auth from '../../utils/firebase-config';
 import {useNavigate} from 'react-router-dom'
 import axios from 'axios';
@@ -67,6 +67,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
     }
 
 
+
     const playTrailer = () => {
         navigate("/trailer" , {
             replace : true,
@@ -96,7 +97,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
                     <RiThumbUpFill title="Like"  />
                     <RiThumbDownFill title="Dislike" />
                     {isLiked ? (
-                    <BsCheck title="Remove from List"  onClick={() => removeFromMovieLikedList}/>) : 
+                    <AiOutlineCheck title="Remove from List"  onClick={() => removeFromMovieLikedList}/>) : 
                     (<AiOutlinePlus title="Add to my list" onClick={addToMovieLikedList}  />)}
                 </div>
                 <div className='overlay__content--info--descr' >

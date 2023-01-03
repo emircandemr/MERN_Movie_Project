@@ -55,6 +55,17 @@
  - [Firebase](https://firebase.google.com)
  - [Vite](https://vitejs.dev/)
 
+<div align="center">
+<h2> Project Video </h2>
+
+[bandicam 2023-01-03 23-26-52-282.webm](https://user-images.githubusercontent.com/72731296/210437165-dd9090fa-2246-4ab1-9e53-35e0f694f02e.webm)
+
+[bandicam 2023-01-03 23-38-33-764.webm](https://user-images.githubusercontent.com/72731296/210438467-4f019b14-fd81-461d-b6a0-b5c9a1cce812.webm)
+
+<video src='https://user-images.githubusercontent.com/72731296/210438467-4f019b14-fd81-461d-b6a0-b5c9a1cce812.webm'>
+</div>
+
+
 
 <div align="center" >
     <h2> 🎆 Desktop Screenshots </h2>
