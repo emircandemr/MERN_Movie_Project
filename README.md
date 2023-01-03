@@ -62,7 +62,6 @@
 
 [bandicam 2023-01-03 23-38-33-764.webm](https://user-images.githubusercontent.com/72731296/210438467-4f019b14-fd81-461d-b6a0-b5c9a1cce812.webm)
 
-<video src='https://user-images.githubusercontent.com/72731296/210438467-4f019b14-fd81-461d-b6a0-b5c9a1cce812.webm'>
 </div>
 
 
