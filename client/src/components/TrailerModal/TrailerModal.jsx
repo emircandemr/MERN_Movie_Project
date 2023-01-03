@@ -55,7 +55,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
     }
 
     const removeFromMovieLikedList = () => {
-        dispatch(removeLikedMovie(email, movie))
+        dispatch(removeLikedMovie({email,movie}))
         toast('Movie removed from your list',
         {
             icon: '👌',
@@ -96,7 +96,7 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
                     <RiThumbUpFill title="Like"  />
                     <RiThumbDownFill title="Dislike" />
                     {isLiked ? (
-                    <BsCheck title="Remove from List"  onClick={removeFromMovieLikedList}/>) : 
+                    <BsCheck title="Remove from List"  onClick={() => removeFromMovieLikedList}/>) : 
                     (<AiOutlinePlus title="Add to my list" onClick={addToMovieLikedList}  />)}
                 </div>
                 <div className='overlay__content--info--descr' >
