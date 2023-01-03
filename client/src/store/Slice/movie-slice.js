@@ -1,6 +1,5 @@
 import {createSlice , createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
-import { removeFromLikedMovies } from "../../../../backend/controllers/UserControl";
 import {baseHTTP} from '../../services/baseHTTP'
  
 export const getGenres = createAsyncThunk('movie/getGenres', async() => {

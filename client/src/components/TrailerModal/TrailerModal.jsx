@@ -55,28 +55,15 @@ const TrailerModal = ({movie,handleModal,isLiked,trailer}) => {
     }
 
     const removeFromMovieLikedList = () => {
-        try{
-            dispatch(removeLikedMovie(email, movie))
-            toast('Movie removed from your list',
-            {
-                icon: '👌',
-                style: {
-                background: '#333',
-                color: '#fff',
-                },
-            })
-        }
-        catch(err){
-            toast(err,
-                {
-                    icon: '❌',
-                    style: {
-                    background: '#333',
-                    color: '#fff',
-                    },
-                })
-                console.log(err)
-        }
+        dispatch(removeLikedMovie(email, movie))
+        toast('Movie removed from your list',
+        {
+            icon: '👌',
+            style: {
+            background: '#333',
+            color: '#fff',
+            },
+        })
     }
 
 
