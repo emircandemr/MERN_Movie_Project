@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 import Navbar from '../components/Navbar/Navbar';
 import Slider from '../components/Slider/Slider';
@@ -10,7 +9,6 @@ import NotFound from '../components/NotFound/NotFound';
 
 const Movies = () => {
 
-    const navigate = useNavigate();
     const dispatch = useDispatch();
   
     const genresLoaded = useSelector(state => state.movie.genresLoaded)

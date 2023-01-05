@@ -9,7 +9,6 @@ import {login} from '../services/authService'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
 import {loginReducer} from '../store/Slice/auth-slice'
-import { useSelector } from 'react-redux'
 const Login = () => {
 
   const navigate = useNavigate()

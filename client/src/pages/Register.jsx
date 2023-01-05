@@ -78,7 +78,6 @@ const registerHandler =async (e) => {
         replace : true
       })
     }
-    console.log("hata")
   }
   return (
     <div>
